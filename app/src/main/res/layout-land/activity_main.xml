@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fcfcfe"
+    tools:context=".MainActivity"
+    >
+
+    <TextView
+        android:id="@+id/tv_expression"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:textSize="@dimen/_25sdp"
+        android:text="885+5"
+        android:gravity="center_vertical"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_5sdp"
+        />
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="haha"
+        android:textColor="#A3A3A3"
+        android:textAlignment="textEnd"
+        android:layout_above="@+id/nav_bar"
+        android:layout_alignParentEnd="true"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        />
+    <RelativeLayout
+        android:id="@+id/nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_above="@+id/divider"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
+            >
+            <ImageView
+                android:id="@+id/img_history"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:src="@drawable/clock"
+                android:layout_marginStart="@dimen/_40sdp"
+                />
+            <ImageView
+                android:id="@+id/img_change_units"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ruler"
+                android:layout_marginStart="@dimen/_60sdp"
+                />
+            <ImageView
+                android:id="@+id/img_more_features"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/switch_more"
+                android:layout_marginStart="@dimen/_60sdp"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/delete_one_char"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/delete"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_28sdp"
+            />
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="#DAD8D8"
+        android:layout_above="@+id/buttons_layout"
+        android:layout_alignParentEnd="true"
+        />
+
+    <LinearLayout
+        android:id="@+id/buttons_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/btn_switch_more_features"
+                android:layout_marginStart="@dimen/_25sdp"
+                style="@style/button_land_text"
+                android:src="@drawable/opposite_arrow"
+                />
+            <Button
+                android:id="@+id/btn_switch_rad_units"
+                android:text="Rad"
+                style="@style/button_land_text"
+                />
+
+            <Button
+                android:id="@+id/btn_sqrt"
+                android:text="\u221A"
+                style="@style/button_land_text"
+                />
+
+
+
+            <Button
+                android:id="@+id/btn_C"
+                android:text="C"
+                android:textColor="#FF0000"
+                style="@style/button_land_1"
+                />
+
+            <Button
+                android:id="@+id/btn_bracket_open"
+                android:text="("
+                android:textColor="@color/green"
+                style="@style/button_land_1"
+                />
+
+            <Button
+                android:id="@+id/btn_bracket_close"
+                android:text=")"
+                android:textColor="@color/green"
+                style="@style/button_land_1"
+                />
+
+            <Button
+                android:id="@+id/btn_divide"
+                android:text="÷"
+                android:textColor="@color/green"
+                style="@style/button_land_1"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_sin"
+                android:text="sin"
+                android:layout_marginStart="@dimen/_25sdp"
+                style="@style/button_land_text"
+                />
+
+            <Button
+                android:id="@+id/btn_cos"
+                android:text="cos"
+                style="@style/button_land_text"
+                />
+
+            <Button
+                android:id="@+id/btn_tan"
+                android:text="tan"
+                style="@style/button_land_text"
+                />
+
+
+
+            <Button
+                android:id="@+id/btn_7"
+                android:text="7"
+                style="@style/button_land_2"
+                />
+
+            <Button
+                android:id="@+id/btn_8"
+                android:text="8"
+                style="@style/button_land_2"
+                />
+
+            <Button
+                android:id="@+id/btn_9"
+                android:text="9"
+                style="@style/button_land_2"
+                />
+            <Button
+                android:id="@+id/btn_multiply"
+                android:text="X"
+                android:textColor="@color/green"
+                style="@style/button_land_1"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_ln"
+                android:text="ln"
+                android:layout_marginStart="@dimen/_25sdp"
+                style="@style/button_land_text"
+                />
+
+            <Button
+                android:id="@+id/btn_log"
+                android:text="log"
+                style="@style/button_land_text"
+                />
+
+            <Button
+                android:id="@+id/btn_1_divide_x"
+                android:text="1/x"
+                style="@style/button_land_text"
+                />
+
+            <Button
+                android:id="@+id/btn_4"
+                android:text="4"
+                style="@style/button_land_2"
+                />
+
+            <Button
+                android:id="@+id/btn_5"
+                android:text="5"
+                style="@style/button_land_2"
+                />
+
+            <Button
+                android:id="@+id/btn_6"
+                android:text="6"
+                style="@style/button_land_2"
+                />
+            <Button
+                android:id="@+id/btn_minus"
+                android:text="—"
+                android:textColor="@color/green"
+                style="@style/button_land_1"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_e_to_the_x_power"
+                android:text=""
+                android:layout_marginStart="@dimen/_25sdp"
+                style="@style/button_land_text"
+                />
+
+            <Button
+                android:id="@+id/btn_x_to_the_2_power"
+                android:text=""
+                style="@style/button_land_text"
+                />
+
+            <Button
+                android:id="@+id/btn_x_to_the_y_power"
+                android:text=""
+                style="@style/button_land_text"
+                />
+
+
+
+            <Button
+                android:id="@+id/btn_1"
+                android:text="1"
+                style="@style/button_land_2"
+                />
+
+            <Button
+                android:id="@+id/btn_2"
+                android:text="2"
+                style="@style/button_land_2"
+                />
+
+            <Button
+                android:id="@+id/btn_3"
+                android:text="3"
+                style="@style/button_land_2"
+                />
+            <Button
+                android:id="@+id/btn_plus"
+                android:text="+"
+                android:textColor="@color/green"
+                style="@style/button_land_1"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/_8sdp">
+            <Button
+                android:id="@+id/btn_absolute_x"
+                android:text="|x|"
+                android:layout_marginStart="@dimen/_25sdp"
+                style="@style/button_land_text"
+                />
+
+            <Button
+                android:id="@+id/btn_pi"
+                android:text="π"
+                style="@style/button_land_text"
+                />
+
+            <Button
+                android:id="@+id/btn_e"
+                android:text="e"
+                style="@style/button_land_text"
+                />
+
+            <Button
+                android:id="@+id/btn_opposite"
+                android:text="+/-"
+                style="@style/button_land_2"
+                />
+
+            <Button
+                android:id="@+id/btn_0"
+                android:text="0"
+                style="@style/button_land_2"
+                />
+
+            <Button
+                android:id="@+id/btn_dot"
+                android:text=","
+                style="@style/button_land_2"
+                />
+            <Button
+                android:id="@+id/btn_equal"
+                style="@style/button_land_1"
+                android:text="="
+                android:textColor="@color/white"
+                android:background="@drawable/round_button_green"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

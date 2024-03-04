@@ -1,0 +1,42 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Group_project" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.Group_project" parent="Base.Theme.Group_project" />
+    
+    <style name="button1">
+        <item name="android:layout_width">@dimen/_55sdp</item>
+        <item name="android:layout_height">@dimen/_55sdp</item>
+        <item name="android:textSize">@dimen/_25sdp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+        <item name="android:layout_margin">@dimen/_10sdp</item>
+        <item name="android:background">@drawable/button_round</item>
+    </style>
+
+    <style name="button2">
+        <item name="android:layout_width">@dimen/_55sdp</item>
+        <item name="android:layout_height">@dimen/_55sdp</item>
+
+        <item name="android:textSize">@dimen/_25sdp</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+        <item name="android:layout_margin">@dimen/_10sdp</item>
+        <item name="android:background">@drawable/button_round_brown</item>
+    </style>
+
+    <style name="button3">
+        <item name="android:layout_width">@dimen/_55sdp</item>
+        <item name="android:layout_height">@dimen/_55sdp</item>
+        <item name="android:textSize">@dimen/_25sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+        <item name="android:layout_margin">@dimen/_10sdp</item>
+        <item name="android:background">@drawable/button_round_green</item>
+    </style>
+</resources>
