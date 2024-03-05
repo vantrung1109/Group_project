@@ -2,11 +2,15 @@ package com.example.group_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 
@@ -46,7 +50,10 @@ public class MainActivity extends AppCompatActivity
             mActivityMainBinding.btnXToTheYPower.setText(Html.fromHtml(xToTheYPower, 1));
         }
 
-        mActivityMainBinding.tvExpression.setShowSoftInputOnFocus(true);
+
+
+
+
         mActivityMainBinding.tvExpression.setText("");
         mActivityMainBinding.tvResult.setText("");
 
@@ -55,6 +62,21 @@ public class MainActivity extends AppCompatActivity
         initialize_special_button_onclick();
         initialize_advanced_button_onclick();
 
+        mActivityMainBinding.tvExpression.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(Editable s) {
+                mActivityMainBinding.horizontalScrollViewExpression.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mActivityMainBinding.horizontalScrollViewExpression.fullScroll(View.FOCUS_RIGHT);
+                    }
+                });
+            }
+        });
     }
 
     private void toggleHistoryVisibility() {
@@ -321,7 +343,23 @@ public class MainActivity extends AppCompatActivity
                 mActivityMainBinding.tvHistory.setText("");
             }
         });
-
+        mActivityMainBinding.imgMoreFeatures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Change portrait to landscape
+                // Check current orientation
+                Activity currentActivity = (Activity) v.getContext();
+                int orientation = currentActivity.getResources().getConfiguration().orientation;
+                // Nếu đang ở chế độ portrait, chuyển sang landscape
+                if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    currentActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                }
+                // Nếu đang ở chế độ landscape, chuyển sang portrait
+                else {
+                    currentActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                }
+            }
+        });
     }
 
     private void initialize_basic_button_onclick() {
