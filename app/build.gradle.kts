@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    implementation ("com.google.code.gson:gson:2.10.1")
     implementation ("net.objecthunter:exp4j:0.4.8")
     implementation ("com.intuit.sdp:sdp-android:1.1.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

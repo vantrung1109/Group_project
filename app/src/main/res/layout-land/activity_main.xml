@@ -7,7 +7,17 @@
     android:background="#fcfcfe"
     tools:context=".MainActivity"
     >
-
+    <TextView
+        android:id="@+id/tv_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:elevation="1dp"/>
     <TextView
         android:id="@+id/tv_expression"
         android:layout_width="wrap_content"
@@ -88,264 +98,299 @@
         android:layout_alignParentEnd="true"
         />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/buttons_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_alignParentBottom="true"
         >
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/advance_buttons_layout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageButton
-                android:id="@+id/btn_switch_more_features"
-                android:layout_marginStart="@dimen/_25sdp"
-                style="@style/button_land_text"
-                android:src="@drawable/opposite_arrow"
-                />
-            <Button
-                android:id="@+id/btn_switch_rad_units"
-                android:text="Rad"
-                style="@style/button_land_text"
-                />
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/btn_switch_more_features"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    style="@style/button_land_text"
+                    android:src="@drawable/opposite_arrow"
+                    />
+                <Button
+                    android:id="@+id/btn_switch_rad_units"
+                    android:text="Rad"
+                    style="@style/button_land_text"
+                    />
 
-            <Button
-                android:id="@+id/btn_sqrt"
-                android:text="\u221A"
-                style="@style/button_land_text"
-                />
+                <Button
+                    android:id="@+id/btn_sqrt"
+                    android:text="\u221A"
+                    style="@style/button_land_text"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_sin"
+                    android:text="sin"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    style="@style/button_land_text"
+                    />
 
+                <Button
+                    android:id="@+id/btn_cos"
+                    android:text="cos"
+                    style="@style/button_land_text"
+                    />
 
+                <Button
+                    android:id="@+id/btn_tan"
+                    android:text="tan"
+                    style="@style/button_land_text"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_ln"
+                    android:text="ln"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    style="@style/button_land_text"
+                    />
 
-            <Button
-                android:id="@+id/btn_C"
-                android:text="C"
-                android:textColor="#FF0000"
-                style="@style/button_land_1"
-                />
+                <Button
+                    android:id="@+id/btn_log"
+                    android:text="log"
+                    style="@style/button_land_text"
+                    />
 
-            <Button
-                android:id="@+id/btn_bracket_open"
-                android:text="("
-                android:textColor="@color/green"
-                style="@style/button_land_1"
-                />
+                <Button
+                    android:id="@+id/btn_1_divide_x"
+                    android:text="1/x"
+                    style="@style/button_land_text"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_e_to_the_x_power"
+                    android:text=""
+                    android:layout_marginStart="@dimen/_25sdp"
+                    style="@style/button_land_text"
+                    />
 
-            <Button
-                android:id="@+id/btn_bracket_close"
-                android:text=")"
-                android:textColor="@color/green"
-                style="@style/button_land_1"
-                />
+                <Button
+                    android:id="@+id/btn_x_to_the_2_power"
+                    android:text=""
+                    style="@style/button_land_text"
+                    />
 
-            <Button
-                android:id="@+id/btn_divide"
-                android:text="÷"
-                android:textColor="@color/green"
-                style="@style/button_land_1"
-                />
+                <Button
+                    android:id="@+id/btn_x_to_the_y_power"
+                    android:text=""
+                    style="@style/button_land_text"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_absolute_x"
+                    android:text="|x|"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    style="@style/button_land_text"
+                    />
+
+                <Button
+                    android:id="@+id/btn_pi"
+                    android:text="π"
+                    style="@style/button_land_text"
+                    />
+
+                <Button
+                    android:id="@+id/btn_e"
+                    android:text="e"
+                    style="@style/button_land_text"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/numbers_layout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/btn_sin"
-                android:text="sin"
-                android:layout_marginStart="@dimen/_25sdp"
-                style="@style/button_land_text"
-                />
+            android:orientation="vertical"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_20sdp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btn_C"
+                    android:text="C"
+                    android:textColor="#FF0000"
+                    style="@style/button_land_1"
+                    />
 
-            <Button
-                android:id="@+id/btn_cos"
-                android:text="cos"
-                style="@style/button_land_text"
-                />
+                <Button
+                    android:id="@+id/btn_bracket_open"
+                    android:text="("
+                    android:textColor="@color/green"
+                    style="@style/button_land_1"
+                    />
 
-            <Button
-                android:id="@+id/btn_tan"
-                android:text="tan"
-                style="@style/button_land_text"
-                />
+                <Button
+                    android:id="@+id/btn_bracket_close"
+                    android:text=")"
+                    android:textColor="@color/green"
+                    style="@style/button_land_1"
+                    />
+
+                <Button
+                    android:id="@+id/btn_divide"
+                    android:text="÷"
+                    android:textColor="@color/green"
+                    style="@style/button_land_1"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_7"
+                    android:text="7"
+                    style="@style/button_land_2"
+                    />
+
+                <Button
+                    android:id="@+id/btn_8"
+                    android:text="8"
+                    style="@style/button_land_2"
+                    />
+
+                <Button
+                    android:id="@+id/btn_9"
+                    android:text="9"
+                    style="@style/button_land_2"
+                    />
+                <Button
+                    android:id="@+id/btn_multiply"
+                    android:text="X"
+                    android:textColor="@color/green"
+                    style="@style/button_land_1"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
 
+                <Button
+                    android:id="@+id/btn_4"
+                    android:text="4"
+                    style="@style/button_land_2"
+                    />
 
-            <Button
-                android:id="@+id/btn_7"
-                android:text="7"
-                style="@style/button_land_2"
-                />
+                <Button
+                    android:id="@+id/btn_5"
+                    android:text="5"
+                    style="@style/button_land_2"
+                    />
 
-            <Button
-                android:id="@+id/btn_8"
-                android:text="8"
-                style="@style/button_land_2"
-                />
+                <Button
+                    android:id="@+id/btn_6"
+                    android:text="6"
+                    style="@style/button_land_2"
+                    />
+                <Button
+                    android:id="@+id/btn_minus"
+                    android:text="—"
+                    android:textColor="@color/green"
+                    style="@style/button_land_1"
 
-            <Button
-                android:id="@+id/btn_9"
-                android:text="9"
-                style="@style/button_land_2"
-                />
-            <Button
-                android:id="@+id/btn_multiply"
-                android:text="X"
-                android:textColor="@color/green"
-                style="@style/button_land_1"
-
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/btn_ln"
-                android:text="ln"
-                android:layout_marginStart="@dimen/_25sdp"
-                style="@style/button_land_text"
-                />
-
-            <Button
-                android:id="@+id/btn_log"
-                android:text="log"
-                style="@style/button_land_text"
-                />
-
-            <Button
-                android:id="@+id/btn_1_divide_x"
-                android:text="1/x"
-                style="@style/button_land_text"
-                />
-
-            <Button
-                android:id="@+id/btn_4"
-                android:text="4"
-                style="@style/button_land_2"
-                />
-
-            <Button
-                android:id="@+id/btn_5"
-                android:text="5"
-                style="@style/button_land_2"
-                />
-
-            <Button
-                android:id="@+id/btn_6"
-                android:text="6"
-                style="@style/button_land_2"
-                />
-            <Button
-                android:id="@+id/btn_minus"
-                android:text="—"
-                android:textColor="@color/green"
-                style="@style/button_land_1"
-
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/btn_e_to_the_x_power"
-                android:text=""
-                android:layout_marginStart="@dimen/_25sdp"
-                style="@style/button_land_text"
-                />
-
-            <Button
-                android:id="@+id/btn_x_to_the_2_power"
-                android:text=""
-                style="@style/button_land_text"
-                />
-
-            <Button
-                android:id="@+id/btn_x_to_the_y_power"
-                android:text=""
-                style="@style/button_land_text"
-                />
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
 
 
-            <Button
-                android:id="@+id/btn_1"
-                android:text="1"
-                style="@style/button_land_2"
-                />
 
-            <Button
-                android:id="@+id/btn_2"
-                android:text="2"
-                style="@style/button_land_2"
-                />
+                <Button
+                    android:id="@+id/btn_1"
+                    android:text="1"
+                    style="@style/button_land_2"
+                    />
 
-            <Button
-                android:id="@+id/btn_3"
-                android:text="3"
-                style="@style/button_land_2"
-                />
-            <Button
-                android:id="@+id/btn_plus"
-                android:text="+"
-                android:textColor="@color/green"
-                style="@style/button_land_1"
+                <Button
+                    android:id="@+id/btn_2"
+                    android:text="2"
+                    style="@style/button_land_2"
+                    />
 
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/_8sdp">
-            <Button
-                android:id="@+id/btn_absolute_x"
-                android:text="|x|"
-                android:layout_marginStart="@dimen/_25sdp"
-                style="@style/button_land_text"
-                />
+                <Button
+                    android:id="@+id/btn_3"
+                    android:text="3"
+                    style="@style/button_land_2"
+                    />
+                <Button
+                    android:id="@+id/btn_plus"
+                    android:text="+"
+                    android:textColor="@color/green"
+                    style="@style/button_land_1"
 
-            <Button
-                android:id="@+id/btn_pi"
-                android:text="π"
-                style="@style/button_land_text"
-                />
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/_8sdp">
 
-            <Button
-                android:id="@+id/btn_e"
-                android:text="e"
-                style="@style/button_land_text"
-                />
 
-            <Button
-                android:id="@+id/btn_opposite"
-                android:text="+/-"
-                style="@style/button_land_2"
-                />
+                <Button
+                    android:id="@+id/btn_mod"
+                    android:text="%"
+                    style="@style/button_land_2"
+                    />
 
-            <Button
-                android:id="@+id/btn_0"
-                android:text="0"
-                style="@style/button_land_2"
-                />
+                <Button
+                    android:id="@+id/btn_0"
+                    android:text="0"
+                    style="@style/button_land_2"
+                    />
 
-            <Button
-                android:id="@+id/btn_dot"
-                android:text=","
-                style="@style/button_land_2"
-                />
-            <Button
-                android:id="@+id/btn_equal"
-                style="@style/button_land_1"
-                android:text="="
-                android:textColor="@color/white"
-                android:background="@drawable/round_button_green"
-                />
+                <Button
+                    android:id="@+id/btn_dot"
+                    android:text=","
+                    style="@style/button_land_2"
+                    />
+                <Button
+                    android:id="@+id/btn_equal"
+                    style="@style/button_land_1"
+                    android:text="="
+                    android:textColor="@color/white"
+                    android:background="@drawable/round_button_green"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
-    </LinearLayout>
+
+
+    </RelativeLayout>
 
 
 

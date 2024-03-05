@@ -2,9 +2,11 @@ package com.example.group_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,17 +16,26 @@ import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity
 {
 
     ActivityMainBinding mActivityMainBinding;
+    List<String> listHistories;
+    private boolean isHistoryVisible = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mActivityMainBinding.getRoot());
+
+        DataLocalManager.init(this);
+        listHistories = new ArrayList<>();
 
         String eToTheXPoWer = "e<sup>x</sup>";
         String xToThe2Power = "x<sup>2</sup>";
@@ -41,6 +52,45 @@ public class MainActivity extends AppCompatActivity
         initialize_advanced_button_onclick();
 
     }
+
+    private void toggleHistoryVisibility() {
+        // Đảo ngược trạng thái hiển thị của TextView
+        int visibility = mActivityMainBinding.tvHistory.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE;
+        mActivityMainBinding.tvHistory.setVisibility(visibility);
+
+        // Cập nhật trạng thái của biến cờ
+        isHistoryVisible = visibility == View.VISIBLE;
+
+        // Nếu TextView được hiển thị sau khi đảo ngược, thì hiển thị lịch sử
+        if (isHistoryVisible) {
+            showHistory();
+        }
+    }
+
+    // Phương thức để hiển thị lịch sử
+    private void showHistory() {
+        // Lấy danh sách lịch sử từ SharedPreferences
+        listHistories = DataLocalManager.getListHistories();
+        // Hiển thị lịch sử trong TextView (tv_history)
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String history : listHistories) {
+            stringBuilder.append(history).append("\n"); //Thêm mỗi phần tử vào stringBuilder và xuống dòng sau mỗi phần tử
+        }
+        mActivityMainBinding.tvHistory.setText(stringBuilder.toString());
+
+    }
+
+    // Phương thức để lưu lịch sử
+    private void saveHistory(String expression, String result) {
+
+        // Lấy danh sách lịch sử hiện tại
+        String saveStrHistory = expression + " = " + result;
+
+        // Thêm biểu thức và kết quả mới vào danh sách
+        listHistories.add(saveStrHistory);
+        DataLocalManager.setListHistories(listHistories);
+    }
+
 
     private void initialize_advanced_button_onclick() {
         if (mActivityMainBinding.btnSqrt != null){
@@ -210,7 +260,8 @@ public class MainActivity extends AppCompatActivity
                             .replace("\u221A", "sqrt")
                             .replace("Ln", "log")
                             .replace("Log", "log10")
-                            .replace("e^(", "exp(");
+                            .replace("e^(", "exp(")
+                            .replace(",", ".");
 
                     // Sử dụng ExpressionBuilder từ exp4j
                     Expression e = new ExpressionBuilder(replace_str).build();
@@ -218,6 +269,9 @@ public class MainActivity extends AppCompatActivity
                     double result = e.evaluate();
                     // Hiển thị kết quả
                     mActivityMainBinding.tvResult.setText(String.valueOf(result));
+                    String a = mActivityMainBinding.tvExpression.getText().toString();
+                    saveHistory(a, String.valueOf(result));
+
                 } catch (Exception e) {
                     // Trường hợp có lỗi xảy ra, ví dụ biểu thức không hợp lệ
                     mActivityMainBinding.tvResult.setText("Error");
@@ -225,6 +279,16 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
+
+        mActivityMainBinding.imgHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Gọi phương thức để ẩn/hiện lịch sử
+                toggleHistoryVisibility();
+            }
+        });
+
+
 
     }
 
@@ -353,7 +417,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        mActivityMainBinding.btnOpposite.setOnClickListener(new View.OnClickListener() {
+        mActivityMainBinding.btnMod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mActivityMainBinding.tvExpression.setText("(-"
