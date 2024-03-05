@@ -7,17 +7,8 @@
     android:background="#fcfcfe"
     tools:context=".MainActivity"
     >
-    <TextView
-        android:id="@+id/tv_history"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp"
-        android:textSize="20dp"
-        android:textColor="#000000"
-        android:background="@color/white"
-        android:layout_marginTop="10dp"
-        android:visibility="gone"
-        android:elevation="1dp"/>
+
+
     <TextView
         android:id="@+id/tv_expression"
         android:layout_width="wrap_content"
@@ -104,6 +95,41 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         >
+        <RelativeLayout
+            android:id="@+id/layout_history"
+            android:layout_width="@dimen/_240sdp"
+            android:layout_height="@dimen/_175sdp"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_5sdp">
+            <ScrollView
+                android:id="@+id/scroll_view_history"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp">
+                <TextView
+                    android:id="@+id/tv_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAlignment="textEnd"
+                    android:padding="10dp"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:background="@color/white"
+                    android:layout_marginTop="10dp"
+                    android:elevation="1dp"/>
+            </ScrollView>
+            <Button
+                android:id="@+id/btn_delete_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/scroll_view_history"
+                android:layout_centerInParent="true"
+                android:background="@drawable/round_button_brown"
+                android:text="Xóa nhật ký"
+                android:textSize="@dimen/_12sdp"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+            </Button>
+        </RelativeLayout>
         <LinearLayout
             android:id="@+id/advance_buttons_layout"
             android:layout_width="wrap_content"

@@ -80,18 +80,46 @@
         android:layout_height="0dp"
         android:layout_weight="0.62"
         android:background="#F0F1F1"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tv_history"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:id="@+id/layout_history"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp"
-            android:textSize="20dp"
-            android:textColor="#000000"
-            android:background="@color/white"
-            android:layout_marginTop="10dp"
             android:visibility="gone"
-            android:elevation="1dp"/>
+            >
+            <ScrollView
+                android:id="@+id/scroll_view_history"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_250sdp">
+                <TextView
+                    android:id="@+id/tv_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAlignment="textEnd"
+                    android:padding="10dp"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:background="@color/white"
+                    android:layout_marginTop="10dp"
+                    android:elevation="1dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"/>
+            </ScrollView>
+        <Button
+            android:id="@+id/btn_delete_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/scroll_view_history"
+            android:layout_centerInParent="true"
+            android:background="@drawable/round_button_brown"
+            android:text="Xóa nhật ký"
+            android:textSize="@dimen/_12sdp"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp">
+        </Button>
+    </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="87dp"

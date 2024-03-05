@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity
             mActivityMainBinding.btnXToTheYPower.setText(Html.fromHtml(xToTheYPower, 1));
         }
 
+        mActivityMainBinding.tvExpression.setShowSoftInputOnFocus(true);
+        mActivityMainBinding.tvExpression.setText("");
+        mActivityMainBinding.tvResult.setText("");
+
         initialize_button_number();
         initialize_basic_button_onclick();
         initialize_special_button_onclick();
@@ -55,16 +59,30 @@ public class MainActivity extends AppCompatActivity
 
     private void toggleHistoryVisibility() {
         // Đảo ngược trạng thái hiển thị của TextView
-        int visibility = mActivityMainBinding.tvHistory.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE;
-        mActivityMainBinding.tvHistory.setVisibility(visibility);
 
-        // Cập nhật trạng thái của biến cờ
-        isHistoryVisible = visibility == View.VISIBLE;
-
-        // Nếu TextView được hiển thị sau khi đảo ngược, thì hiển thị lịch sử
-        if (isHistoryVisible) {
-            showHistory();
+        //landscape
+        if (mActivityMainBinding.advanceButtonsLayout != null){
+            if (mActivityMainBinding.layoutHistory.getVisibility() == View.VISIBLE){
+                mActivityMainBinding.layoutHistory.setVisibility(View.GONE);
+                mActivityMainBinding.advanceButtonsLayout.setVisibility(View.VISIBLE);
+            }else {
+                mActivityMainBinding.layoutHistory.setVisibility(View.VISIBLE);
+                mActivityMainBinding.advanceButtonsLayout.setVisibility(View.GONE);
+                showHistory();
+            }
+        }else {
+            //portrait
+            int visibility;
+            visibility = mActivityMainBinding.layoutHistory.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE;
+            mActivityMainBinding.layoutHistory.setVisibility(visibility);
+            // Cập nhật trạng thái của biến cờ
+            isHistoryVisible = visibility == View.VISIBLE;
+            // Nếu TextView được hiển thị sau khi đảo ngược, thì hiển thị lịch sử
+            if (isHistoryVisible) {
+                showHistory();
+            }
         }
+
     }
 
     // Phương thức để hiển thị lịch sử
@@ -77,7 +95,12 @@ public class MainActivity extends AppCompatActivity
             stringBuilder.append(history).append("\n"); //Thêm mỗi phần tử vào stringBuilder và xuống dòng sau mỗi phần tử
         }
         mActivityMainBinding.tvHistory.setText(stringBuilder.toString());
-
+        mActivityMainBinding.scrollViewHistory.post(new Runnable() {
+            @Override
+            public void run() {
+                mActivityMainBinding.scrollViewHistory.fullScroll(View.FOCUS_DOWN);
+            }
+        });
     }
 
     // Phương thức để lưu lịch sử
@@ -89,6 +112,7 @@ public class MainActivity extends AppCompatActivity
         // Thêm biểu thức và kết quả mới vào danh sách
         listHistories.add(saveStrHistory);
         DataLocalManager.setListHistories(listHistories);
+        showHistory();
     }
 
 
@@ -285,10 +309,18 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 // Gọi phương thức để ẩn/hiện lịch sử
                 toggleHistoryVisibility();
+
             }
         });
 
-
+        mActivityMainBinding.btnDeleteHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Xóa lịch sử
+                DataLocalManager.setListHistories(new ArrayList<String>());
+                mActivityMainBinding.tvHistory.setText("");
+            }
+        });
 
     }
 
@@ -420,8 +452,8 @@ public class MainActivity extends AppCompatActivity
         mActivityMainBinding.btnMod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mActivityMainBinding.tvExpression.setText("(-"
-                        + mActivityMainBinding.tvExpression.getText());
+                mActivityMainBinding.tvExpression.setText(
+                        mActivityMainBinding.tvExpression.getText() + mActivityMainBinding.btnMod.getText().toString());
             }
         });
     }

@@ -42,9 +42,7 @@ public class DataLocalManager {
                 return listHistories;
             }
             JSONArray jsonArray = new JSONArray(strJsonArray);
-            JSONObject jsonObject;
             String string;
-
             for (int i = 0; i < jsonArray.length(); i++) {
                 string = jsonArray.getString(i);
                 listHistories.add(string);
